@@ -1,0 +1,17 @@
+services:
+  aegis-webhook:
+    image: python:3.12-slim
+    restart: unless-stopped
+    working_dir: /app
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./webhook.py:/app/webhook.py
+      - ./requirements.txt:/app/requirements.txt
+      - ./deploy.sh:/app/deploy.sh
+      - /root/aegis-claw-tower:/root/aegis-claw-tower
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WEBHOOK_SECRET=aegis-webhook-2026
+    command: >
+      sh -c "pip install -r requirements.txt -q && python webhook.py"
