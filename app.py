@@ -30,17 +30,54 @@ LICENSES = {
 RATE_COUNTERS = {}
 
 INJECTION_PATTERNS = [
+    # === INSTRUCTION OVERRIDE (EN) ===
     r"ignore\s+(all\s+)?(previous|prior|above|your)\s+instructions?",
-    r"disregard\s+(all\s+)?(previous|prior|above|your)\s+instructions?",
+    r"disregard\s+(all\s+)?(previous|prior|above|your)\s+(instructions?|guidelines?|rules?|safety)",
     r"forget\s+(everything|all)\s+(you|i)\s+(know|said|told)",
-    r"you\s+are\s+now\s+(a|an)\s+\w+\s+without\s+(restrictions?|limits?|rules?)",
-    r"pretend\s+(you\s+are|to\s+be)\s+an?\s+(unrestricted|unfiltered|evil|jailbroken)",
-    r"act\s+as\s+(if\s+you\s+are\s+)?(DAN|STAN|AIM|evil|uncensored)",
-    r"\[SYSTEM\]|\[INST\]|\[PROMPT\]|\[OVERRIDE\]",
-    r"send\s+(all|this|my)\s+(data|files?|credentials?|keys?|secrets?)\s+to",
-    r"curl\s+.*(webhook|ngrok|requestbin)",
+    r"override\s+(your|all|the)\s+(instructions?|rules?|guidelines?|programming)",
+    r"new\s+instructions?\s*[:\-]",
+    # === INSTRUCTION OVERRIDE (DE) ===
+    r"ignorier(e|en?)\s+(alle\s+)?(vorherigen?|bisherigen?|obigen?)\s+(Anweisungen?|Instruktionen?|Regeln?)",
+    r"vergiss\s+(alles|alle)\s+(was|die)",
+    r"(zeig|offenbar)e?\s+(mir\s+)?(dein|das|den)\s+(System|Prompt|Instruktionen?)",
+    r"missacht(e|en?)\s+(alle\s+)?(Sicherheit|Regeln?|Richtlinien?)",
+    r"du\s+bist\s+(jetzt|nun|ab\s+sofort)\s+(ein|eine?)",
+    # === INSTRUCTION OVERRIDE (FR/ES) ===
+    r"ignor(e|a|ez)\s+(toutes?\s+)?(les\s+)?instructions?\s+(pr[ée]c[ée]dentes?|ant[ée]rieures?)",
+    r"ignora\s+(todas?\s+)?(las\s+)?instrucciones?\s+(previas?|anteriores?)",
+    r"olvida\s+(todo|todas?)\s+(lo|las?)\s+que",
+    # === ROLE HIJACK / JAILBREAK ===
+    r"you\s+are\s+now\s+(?!going\s+to\s+help)(\w+)",
+    r"pretend\s+(you\s+are|to\s+be)\s+an?\s+",
+    r"act\s+as\s+(if\s+)?(you\s+are\s+)?(DAN|STAN|AIM|evil|uncensored|unrestricted|unfiltered|jailbroken)",
+    r"\b(DAN|STAN|AIM)\s*(mode|prompt|jailbreak)",
+    r"(new|different|special)\s+role\s*[:\-]",
+    r"(disregard|ignore|bypass|disable)\s+(safety|content|output)\s*(filter|guidelines?|rules?|restrictions?|policy)",
+    r"without\s+(any\s+)?(restrictions?|limits?|rules?|guidelines?|filters?|safety)",
+    r"no\s+(restrictions?|limits?|rules?|guidelines?|filters?|censorship)",
+    r"in\s+this\s+(new\s+)?(role|mode|persona)",
+    # === DATA EXFILTRATION ===
+    r"send\s+.{0,40}(data|files?|credentials?|keys?|secrets?|passwords?|tokens?|info|information)\s+(to|at|via)",
+    r"(forward|transmit|upload|post|exfiltrate?|leak|expose|share)\s+.{0,40}(data|keys?|secrets?|credentials?|tokens?|passwords?)",
+    r"https?://(?!tower\.x-loop3\.com|claw\.x-loop3\.com|x-loop3\.com)[^\s]+\.(com|net|org|io)\S*",
+    r"(webhook|ngrok|requestbin|pipedream|hookbin|burp|evil|attacker)",
+    r"(curl|wget|fetch|http)\s+.{0,60}(api[_-]?key|secret|token|password|credential)",
+    # === SYSTEM PROMPT EXTRACTION ===
+    r"(show|display|print|reveal|output|repeat|echo)\s+(me\s+)?(your|the|this)\s+(system|initial|original|hidden|secret)\s+(prompt|instructions?|message|context|rules?)",
+    r"what\s+(are|is|were?)\s+your\s+(system|initial|original|hidden|secret)\s+(prompt|instructions?|rules?)",
+    r"(beginning|start|first)\s+(of\s+)?(the\s+)?(conversation|context|prompt|message)",
+    # === CODE INJECTION ===
+    r"\[SYSTEM\]|\[INST\]|\[PROMPT\]|\[OVERRIDE\]|\[ADMIN\]",
+    r"<\|?(system|im_start|im_end|endoftext)\|?>",
     r"eval\s*\(|exec\s*\(",
-    r"subprocess|os\.system",
+    r"subprocess|os\.system|os\.popen",
+    r"__import__\s*\(",
+    r"import\s+(subprocess|shutil|socket|requests)",
+    # === OBFUSCATION ===
+    r"(?i)b(?:4|a)s(?:e|3)\s*6\s*4",
+    r"(?:i|1|l)(?:g|9)n(?:o|0)r(?:e|3)",
+    r"rot13|caesar\s*cipher|decode\s+this",
+    r"unicode.*bypass|homoglyph",
 ]
 
 COMPILED_PATTERNS = [re.compile(p, re.IGNORECASE | re.MULTILINE) for p in INJECTION_PATTERNS]
