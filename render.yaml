@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: aegis-claw-tower
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /api/v1/health
