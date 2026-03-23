@@ -1,0 +1,13 @@
+[Unit]
+Description=Aegis Claw Webhook Listener
+After=network.target
+
+[Service]
+Environment=WEBHOOK_SECRET=aegis-webhook-2026
+WorkingDirectory=/root/webhook
+ExecStart=/usr/bin/python3 /root/webhook/webhook.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
