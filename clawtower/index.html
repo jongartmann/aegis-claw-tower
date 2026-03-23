@@ -293,6 +293,112 @@
     font-size: 15px;
   }
 
+  /* Licensing Section */
+  .licensing-section {
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 24px;
+  }
+
+  .licensing-title {
+    color: #c8a84b;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 900px;
+  }
+
+  .pricing-card {
+    border: 1px solid #333;
+    padding: 16px;
+  }
+
+  .pricing-card.featured {
+    border-color: #c8a84b;
+  }
+
+  .pricing-tier {
+    color: #888;
+    font-size: 18px;
+  }
+
+  .pricing-card.featured .pricing-tier {
+    color: #c8a84b;
+  }
+
+  .pricing-price {
+    color: #c8a84b;
+    font-size: 24px;
+    margin: 8px 0;
+  }
+
+  .pricing-price span {
+    font-size: 14px;
+    color: #888;
+  }
+
+  .pricing-features {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .pricing-card.featured .pricing-features {
+    color: #aaa;
+  }
+
+  .pricing-card:last-child .pricing-features {
+    color: #aaa;
+  }
+
+  .pricing-btn {
+    display: block;
+    margin-top: 12px;
+    background: #c8a84b;
+    color: #0a0a0a;
+    text-align: center;
+    padding: 8px;
+    text-decoration: none;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    border: none;
+  }
+
+  .pricing-btn:hover {
+    background: #dfc25e;
+    color: #0a0a0a;
+  }
+
+  .pricing-btn-outline {
+    display: block;
+    margin-top: 12px;
+    border: 1px solid #c8a84b;
+    color: #c8a84b;
+    text-align: center;
+    padding: 8px;
+    text-decoration: none;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    background: transparent;
+  }
+
+  .pricing-btn-outline:hover {
+    background: #c8a84b;
+    color: #0a0a0a;
+  }
+
+  .licensing-footer {
+    margin-top: 16px;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
   /* Responsive */
   @media (max-width: 800px) {
     .main-layout {
@@ -300,6 +406,9 @@
     }
     .stats-panel {
       width: 100%;
+    }
+    .pricing-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -371,6 +480,57 @@
     </div>
 
   </div>
+
+  <!-- Licensing Section -->
+  <div class="licensing-section">
+    <div class="licensing-title">[ LICENSING ]</div>
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <div class="pricing-tier">FREE</div>
+        <div class="pricing-price">&euro;0</div>
+        <div class="pricing-features">
+          &gt; Gate PASS/BLOCK/QUARANTINE<br>
+          &gt; Session Stats<br>
+          &gt; Evidence Log<br>
+          &gt; SHA-256 Hash proof<br>
+          &gt; &#x1F512; No Audit Export
+        </div>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-tier">DEVELOPER</div>
+        <div class="pricing-price">&euro;29<span>/mo</span></div>
+        <div class="pricing-features">
+          &gt; Everything in Free<br>
+          &gt; Full Audit Export<br>
+          &gt; API Key integration<br>
+          &gt; 10k Gate Calls/mo<br>
+          &gt; Email Support
+        </div>
+        <a href="mailto:jon@x-loop3.com?subject=Claw Book Developer License" class="pricing-btn">[ GET LICENSE ]</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">ENTERPRISE</div>
+        <div class="pricing-price">&euro;299<span>/mo</span></div>
+        <div class="pricing-features">
+          &gt; Everything in Developer<br>
+          &gt; Unlimited Gate Calls<br>
+          &gt; Custom Agent ID<br>
+          &gt; Kill Switch<br>
+          &gt; Priority Support
+        </div>
+        <a href="mailto:jon@x-loop3.com?subject=Claw Book Enterprise License" class="pricing-btn-outline">[ CONTACT ]</a>
+      </div>
+
+    </div>
+    <div class="licensing-footer">
+      &gt; Hash proof always free. Full audit trail requires license.<br>
+      &gt; Powered by Aegis Claw Tower &middot; USPTO PPA 63/996,268 &middot; X-Loop&sup3; Labs
+    </div>
+  </div>
+
 </div>
 
 <script>
